@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco Shop - Vente de Matériel High-Tech & Articles à Karpala</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Barre d'annonce supérieure -->
+    <div class="top-bar">
+        <span><i class="fas fa-map-marker-alt"></i> Boutique située à Karpala, Ouagadougou</span>
+        <span><i class="fas fa-truck"></i> Livraison rapide partout à Ouagadougou</span>
+        <span><i class="fab fa-whatsapp"></i> Commandes & Support : +226 51 89 29 52</span>
+    </div>
+
+    <!-- En-tête principal -->
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-badge">BS</span>
+            <div>
+                <h1>Bloco Shop</h1>
+                <p>Tech & Digital Store</p>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Rechercher un article...">
+        </div>
+
+        <div class="header-actions">
+            <button id="cartBtn" class="cart-btn">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Mon Panier</span>
+                <span id="cartCount" class="cart-badge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Bannière d'accueil -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h2>Votre Boutique de Référence à Karpala</h2>
+            <p>Découvrez notre catalogue complet d'articles de qualité disponibles dès maintenant chez Bloco Shop !</p>
+            <a href="#productsGrid" class="btn-hero"><i class="fas fa-shopping-cart"></i> Parcourir le catalogue</a>
+        </div>
+    </section>
+
+    <!-- Barres de réassurance -->
+    <section class="features-bar">
+        <div class="feature-item">
+            <i class="fas fa-shield-alt"></i>
+            <div>
+                <h4>Qualité Garantie</h4>
+                <p>Produits testés et fiables</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-motorcycle"></i>
+            <div>
+                <h4>Livraison Express</h4>
+                <p>À domicile ou au bureau</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-hand-holding-usd"></i>
+            <div>
+                <h4>Paiement à la livraison</h4>
+                <p>Cash, Orange Money ou Moov</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <i class="fab fa-whatsapp"></i>
+            <div>
+                <h4>Service Client 24/7</h4>
+                <p>Assistance WhatsApp directe</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Produits -->
+    <section class="main-container">
+        <div class="section-title">
+            <h2>Notre Catalogue Complet</h2>
+            <p>Cliquez sur un article pour voir les détails ou l'ajouter à votre panier</p>
+        </div>
+
+        <div class="categories">
+            <button class="cat-btn active" data-category="all"><i class="fas fa-th-large"></i> Tous les articles</button>
+            <button class="cat-btn" data-category="high-tech"><i class="fas fa-microchip"></i> High-Tech & Accessoires</button>
+            <button class="cat-btn" data-category="general"><i class="fas fa-box-open"></i> Mode & Articles Divers</button>
+        </div>
+
+        <!-- Grille dynamique des produits -->
+        <div id="productsGrid" class="products-grid"></div>
+    </section>
+
+    <!-- MODAL : Détails du Produit -->
+    <div id="productModal" class="modal">
+        <div class="modal-content product-detail-modal">
+            <span id="closeProductModal" class="close">&times;</span>
+            <div class="product-detail-body">
+                <div class="product-detail-img">
+                    <img id="modalProductImg" src="" alt="Photo Produit">
+                </div>
+                <div class="product-detail-info">
+                    <span class="stock-badge"><i class="fas fa-check-circle"></i> En stock à Karpala</span>
+                    <h2 id="modalProductName">Nom du Produit</h2>
+                    <div id="modalProductPrice" class="modal-price">0 FCFA</div>
+                    
+                    <div class="product-description">
+                        <h4><i class="fas fa-info-circle"></i> Description :</h4>
+                        <p id="modalProductDesc">Description détaillée...</p>
+                    </div>
+
+                    <div class="product-specs">
+                        <h4><i class="fas fa-list-ul"></i> Caractéristiques :</h4>
+                        <ul id="modalProductSpecs"></ul>
+                    </div>
+
+                    <button id="modalAddToCartBtn" class="btn-primary-add">
+                        <i class="fas fa-cart-plus"></i> Ajouter au panier
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL : Panier & Commande WhatsApp -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span id="closeCart" class="close">&times;</span>
+            <div class="modal-header">
+                <h2><i class="fas fa-shopping-bag"></i> Votre Panier</h2>
+            </div>
+            <div id="cartItems" class="cart-items-list"></div>
+            
+            <div class="cart-summary">
+                <span>Total :</span>
+                <strong id="cartTotal">0 FCFA</strong>
+            </div>
+            
+            <form id="checkoutForm" class="checkout-form">
+                <h3><i class="fas fa-user-check"></i> Informations de livraison</h3>
+                <div class="form-group">
+                    <label for="clientName">Nom complet *</label>
+                    <input type="text" id="clientName" placeholder="Ex: Jean Ouédraogo" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientPhone">Numéro de téléphone *</label>
+                    <input type="tel" id="clientPhone" placeholder="Ex: +226 70 00 00 00" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientAddress">Lieu de livraison / Quartier *</label>
+                    <input type="text" id="clientAddress" placeholder="Ex: Karpala, Ouagadougou" required>
+                </div>
+                <button type="submit" class="whatsapp-checkout-btn">
+                    <i class="fab fa-whatsapp"></i> Valider et Commander via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- PIED DE PAGE -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <h2>Bloco Shop</h2>
+                    <p>Votre référence en articles de qualité à Ouagadougou.</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Contact & Adresse</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> Karpala, Ouagadougou, Burkina Faso</li>
+                    <li><i class="fas fa-phone-alt"></i> +226 51 89 29 52</li>
+                    <li><i class="fab fa-whatsapp"></i> +226 51 89 29 52</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 <strong>Bloco Shop</strong> - Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
