@@ -1,0 +1,20 @@
+{
+  "name": "Bloco Shop",
+  "short_name": "BlocoShop",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#008000",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/Mk2jc8Wj/1792884673414.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://i.ibb.co/Mk2jc8Wj/1792884673414.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

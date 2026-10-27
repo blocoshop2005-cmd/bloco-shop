@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
+    <!-- Lien vers le Manifest de l'application -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#008000">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -188,5 +191,14 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then((reg) => console.log('Service Worker enregistré avec succès !', reg))
+        .catch((err) => console.log('Erreur Service Worker :', err));
+    });
+  }
+</script>
 </body>
 </html>
